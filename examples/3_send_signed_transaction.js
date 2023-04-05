@@ -1,13 +1,14 @@
 const { ethers } = require("ethers");
 require('dotenv').config()
 
-const ALCHEMY_API_KEY = process.env.ALCHEMY_API_KEY;
-const provider = new ethers.providers.JsonRpcProvider(`https://eth-mainnet.alchemyapi.io/v2/${ALCHEMY_API_KEY}`)
+// const ALCHEMY_API_KEY = process.env.ALCHEMY_GOERLI_API_KEY;
+const { ALCHEMY_GOERLI_URL, ALCHEMY_GOERLI_API_KEY } = process.env;
+const provider = new ethers.providers.JsonRpcProvider(`${ALCHEMY_GOERLI_URL}${ALCHEMY_GOERLI_API_KEY}`)
 
-const account1 = '' // Your account address 1
-const account2 = '' // Your account address 2
+const account1 = '0x9FCD8Df15D1B78D8e643Fb006D039f931794Be91' // Your account address 1
+const account2 = '0x7f110Ba43Cd7EEd0837658a467A211E9177b0629' // Your account address 2
 
-const privateKey1 = '' // Private key of account 1
+const privateKey1 = process.env.PRIVATE_KEY_1;
 const wallet = new ethers.Wallet(privateKey1, provider)
 
 const main = async () => {
