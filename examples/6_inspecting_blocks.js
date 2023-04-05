@@ -1,8 +1,8 @@
 const { ethers } = require("ethers");
 require('dotenv').config()
 
-const ALCHEMY_API_KEY = process.env.ALCHEMY_API_KEY;
-const provider = new ethers.providers.JsonRpcProvider(`https://eth-mainnet.alchemyapi.io/v2/${ALCHEMY_API_KEY}`)
+const { ALCHEMY_MAINNET_URL, ALCHEMY_MAINNET_API_KEY, PRIVATE_KEY_1 } = process.env;
+const provider = new ethers.providers.JsonRpcProvider(`${ALCHEMY_MAINNET_URL}${ALCHEMY_MAINNET_API_KEY}`);
 
 const main = async () => {
     const block = await provider.getBlockNumber()
@@ -11,6 +11,7 @@ const main = async () => {
 
     const blockInfo = await provider.getBlock(block)
 
+    console.log(`\nBlock Info:\n`)
     console.log(blockInfo)
 
     const { transactions } = await provider.getBlockWithTransactions(block)
